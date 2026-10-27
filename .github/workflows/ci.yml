@@ -175,7 +175,7 @@ jobs:
           repo="ghcr.io/${GITHUB_REPOSITORY,,}"
           echo "backend=$repo-backend" >> "$GITHUB_OUTPUT"
           echo "web=$repo-web" >> "$GITHUB_OUTPUT"
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: backend
           push: ${{ github.event_name == 'push' }}
@@ -184,7 +184,7 @@ jobs:
             ${{ steps.names.outputs.backend }}:${{ github.sha }}
           cache-from: type=gha,scope=backend
           cache-to: type=gha,mode=max,scope=backend
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: frontend
           push: ${{ github.event_name == 'push' }}
